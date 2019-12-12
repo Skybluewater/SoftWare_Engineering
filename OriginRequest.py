@@ -3,19 +3,27 @@ from copy import deepcopy
 
 
 class BiTree:
-    operators = ('+', '-', '*', '/')
+    operators = ['+', '-', '*', '/']
+
+    def getOperOrder(self, ch):
+        if ch in ['+', '-']:
+            return 0
+        elif ch in ['*', '/']:
+            return 2
+        elif ch == '^':
+            return 4
 
     def __init__(self,node_type=0,val=0):
         self.node_type=node_type
         self.val=val
         self.lchild=None
         self.rchild=None
-
-        if self.node_type==1:
-            if self.val in (0,1):
-                self.this_level=0
-            elif self.val in (2,3):
-                self.this_level=2
+        if self.node_type == 1:
+            self.val=chr(self.val)
+            if self.getOperOrder(self.val) == 0:
+                self.this_level = 0
+            elif self.getOperOrder(self.val) == 2 or self.getOperOrder(self.val) == 4:
+                self.this_level = 2
 
     def set_children(self,lchild,rchild=None):
         self.lchild=lchild
@@ -25,9 +33,9 @@ class BiTree:
     def to_string(self,upper_level=0):
         if self.node_type==1:
             if upper_level>self.this_level:
-                return '(' + self.lchild.to_string(self.this_level) + self.operators[self.val] + self.rchild.to_string(self.this_level + 1) + ')'
+                return '(' + self.lchild.to_string(self.this_level) + self.val + self.rchild.to_string(self.this_level + 1) + ')'
             else:
-                return self.lchild.to_string(self.this_level) + self.operators[self.val] + self.rchild.to_string(self.this_level + 1)
+                return self.lchild.to_string(self.this_level) + self.val + self.rchild.to_string(self.this_level + 1)
         return str(self.val)
 
 
@@ -37,9 +45,10 @@ class QuestGenerator:
         self.deduplicate_set = set()
 
     def generate(self, quantity=1, operators=7):
+        operands = ['+', '-', '*', '/']
         for loop in range(quantity):
             nums = [BiTree(0, random.randint(0, 9)) for _ in range(operators + 1)]
-            ops = [BiTree(1, random.randint(0, len(BiTree.operators)-2)) for _ in range(operators)]
+            ops = [BiTree(1, ord(operands[random.randint(0, 3)])) for _ in range(operators)]
             unfilled_ops = ops
             filled_ops = nums
 
@@ -79,6 +88,7 @@ class QuestGenerator:
             tmp = node.lchild
             node.lchild = node.rchild
             node.rchild = tmp
+
 
 if __name__=='__main__':
     g=QuestGenerator()
