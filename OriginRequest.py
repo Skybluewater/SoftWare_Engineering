@@ -127,7 +127,3 @@ class QuestGenerator:
             node.lchild = node.rchild
             node.rchild = tmp
 
-
-if __name__=='__main__':
-    g=QuestGenerator()
-    g.generate(quantity=5,operators=10,if_false=False,if_pow=False,Max=9)
