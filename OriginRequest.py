@@ -105,21 +105,6 @@ class QuestGenerator:
                 continue
             self.output_list.append(filled_ops[-1])
             print(self.output_list[-1].to_string())
-            #k=self.output_list[-1].to_string()
-            #x=k[0]
-            #max=0
-            #last=0
-            #last_priority=0
-            #stack=Stack()
-            #for i in range(k.length()):
-            #    if k[i] == '(':
-            #        op=Op(i,False,last_priority)
-            #        last=1
-            #        stack.push(op)
-            #    elif k[i] == ')':
-            #        op=Op()
-            #    elif
-
 
     def deduplicate(self, root: BiTree):
         # 深拷贝 - 避免破坏原有的随机顺序
