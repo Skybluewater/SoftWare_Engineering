@@ -1,6 +1,6 @@
 import random
 from copy import deepcopy
-
+from solve import solvable
 
 class BiTree:
     operators = ['+', '-', '*', '/']
@@ -20,10 +20,7 @@ class BiTree:
         self.rchild=None
         if self.node_type == 1:
             self.val=chr(self.val)
-            if self.getOperOrder(self.val) == 0:
-                self.this_level = 0
-            elif self.getOperOrder(self.val) == 2 or self.getOperOrder(self.val) == 4:
-                self.this_level = 2
+            self.this_level=self.getOperOrder(self.val)
 
     def set_lchild(self,lchild):
         self.lchild=lchild
@@ -81,7 +78,8 @@ class QuestGenerator:
 
     def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, Max=9):
         operands = ['+', '-', '*', '/', '^']
-        for loop in range(quantity):
+        sum=0
+        while sum < quantity:
             if if_false:
                 nums = [BiTree(0, random.randint(-Max, Max)) for _ in range(operators + 1)]
             else:
@@ -101,20 +99,32 @@ class QuestGenerator:
                 filled_ops.pop(i)
                 filled_ops.append(unfilled_ops[0])
                 unfilled_ops.pop(0)
-            if not self.deduplicate(filled_ops[-1]):
+
+            if self.deduplicate(filled_ops[-1]):
+                print('Duplicated!')
                 continue
-            self.output_list.append(filled_ops[-1])
-            print(self.output_list[-1].to_string())
+            string = filled_ops[-1].to_string()
+            solve = solvable()
+            k = solve.Calculator(string)
+            if k=='not solvable':
+                print(string)
+                continue
+            else:
+                k =round(k, 3)
+                print(string+'='+str(k))
+            sum=sum+1
+            self.output_list.append(string)
+            self.output_list.append(str(k))
 
     def deduplicate(self, root: BiTree):
         # 深拷贝 - 避免破坏原有的随机顺序
         inspect = deepcopy(root)
         QuestGenerator.format_expression(inspect)
         if inspect.to_string() in self.deduplicate_set:
-            return False
+            return True
         else:
             self.deduplicate_set.add(inspect.to_string())
-            return True
+            return False
 
     def format_expression(node: BiTree):
         if not node.lchild:
