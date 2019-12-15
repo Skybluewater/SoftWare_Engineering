@@ -4,27 +4,27 @@ from fractions import Fraction
 class solvable:
     prior = {'+': 0, '-': 0, '*': 1, '/': 1, '^': 2, '(': -1}
 
-    def solve(self,num1:Fraction,num2:Fraction,operator):
-        if operator=='+':
-            return num1+num2
-        elif operator=='-':
-            return num2-num1
-        elif operator=='/':
-            if num1==0:
+    def solve(self, num1: Fraction, num2: Fraction, operator):
+        if operator == '+':
+            return num1 + num2
+        elif operator == '-':
+            return num2 - num1
+        elif operator == '/':
+            if num1 == 0:
                 return 'not solvable'
-            return num2/num1
+            return num2 / num1
         elif operator == '*':
-            return num2*num1
+            return num2 * num1
         elif operator == '^':
-            k1=num2.denominator
-            k2=num2.numerator
+            k1 = num2.denominator
+            k2 = num2.numerator
             if num1 == 0:
                 return Fraction(1, 1)
             elif num1 >= 5 or num1 <= 0.2 or num2 >= 100 or num2 <= 0.01:
                 return 'not solvable'
-            k2=pow(int(k2), num1)
-            k1=pow(int(k1), num1)
-            if type(k1)==int and type(k2) == int:
+            k2 = pow(int(k2), num1)
+            k1 = pow(int(k1), num1)
+            if type(k1) == int and type(k2) == int:
                 return Fraction(k2, k1)
             else:
                 return 'not solvable'
