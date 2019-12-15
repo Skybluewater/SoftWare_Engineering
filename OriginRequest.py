@@ -102,7 +102,6 @@ class QuestGenerator:
                 filled_ops.pop(i)
                 filled_ops.append(unfilled_ops[0])
                 unfilled_ops.pop(0)
-
             if self.deduplicate(filled_ops[-1]):
                 print('Duplicated!')
                 continue
@@ -114,7 +113,8 @@ class QuestGenerator:
                 continue
             else:
                 k = self.round_up(round(k, 3))
-            sum=sum+1
+            sum = sum+1
+            print(string, '=', str(k))
             self.output_list.append(string)
             self.output_list.append(str(k)[:-1])
 
