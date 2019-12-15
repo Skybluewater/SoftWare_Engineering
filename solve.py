@@ -1,3 +1,5 @@
+from fractions import Fraction
+from math import gcd
 
 class solvable:
 
