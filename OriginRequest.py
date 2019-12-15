@@ -79,7 +79,7 @@ class QuestGenerator:
         self.output_list = []
         self.deduplicate_set = set()
 
-    def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, Max=9):
+    def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, if_fraction=False, Max=9):
         operands = ['+', '-', '*', '/', '^']
         sum=0
         while sum < quantity:
@@ -107,11 +107,11 @@ class QuestGenerator:
                 continue
             string = filled_ops[-1].to_string()
             solve = solvable()
-            k = solve.Calculator(string)
+            k = solve.Calculator(string, if_fraction)
             if k=='not solvable':
                 print(string)
                 continue
-            else:
+            elif not if_fraction:
                 k = self.round_up(round(k, 3))
             sum = sum+1
             print(string, '=', str(k))
