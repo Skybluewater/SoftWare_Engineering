@@ -82,10 +82,10 @@ class QuestGenerator:
             solve = solvable()
             k = solve.Calculator(string)
             if k == 'not solvable':
-                print(string)
+                print(string,'****** not solvable')
                 continue
             if not if_fraction:
-                k = float(k.numerator/k.denominator)
+                k = self.round_up(round(float(k.numerator/k.denominator), 3))
             sum = sum+1
             print(string, '=', str(k))
             self.output_list.append(string)
