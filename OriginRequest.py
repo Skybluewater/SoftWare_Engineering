@@ -116,7 +116,7 @@ class QuestGenerator:
             sum = sum+1
             print(string, '=', str(k))
             self.output_list.append(string)
-            self.output_list.append(str(k)[:-1])
+            self.output_list.append(str(k))
 
     def deduplicate(self, root: BiTree):
         # 深拷贝 - 避免破坏原有的随机顺序
