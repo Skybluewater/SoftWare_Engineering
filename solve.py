@@ -1,26 +1,27 @@
 from fractions import Fraction
-from math import gcd
+
 
 class solvable:
 
     prior = {'+': 0, '-': 0, '*': 1, '/': 1, '^': 2, '(': -1}
 
-    def solve(self,num1,num2,operator):
+    def solve(self,num1,num2,operator,if_fraction):
         if operator=='+':
             return num1+num2
         elif operator=='-':
             return num2-num1
         elif operator=='/':
             if num1==0:
-                print('not solvable')
                 return 'not solvable'
+            if if_fraction:
+                return Fraction(num2, num1)
             return num2/num1
-        elif operator=='*':
+        elif operator == '*':
             return num2*num1
-        elif operator=='^':
-            return pow(num2,num1)
+        elif operator == '^' or operator == '**':
+            return pow(num2, num1)
 
-    def Calculator(self, line):
+    def Calculator(self, line, if_fraction):
         opt = []
         data = []
         i = 0
@@ -41,21 +42,21 @@ class solvable:
                 data.append(int(line[start:i + 1]))
             elif line[i] == ')':
                 while opt[-1] != '(':
-                    k = self.solve(data.pop(), data.pop(), opt.pop())
+                    k = self.solve(data.pop(), data.pop(), opt.pop(), if_fraction)
                     if k == 'not solvable':
                         return 'not solvable'
                     data.append(k)
                 opt.pop()
             else:
                 while opt and self.prior[line[i]] <= self.prior[opt[-1]]:
-                    k = self.solve(data.pop(), data.pop(), opt.pop())
+                    k = self.solve(data.pop(), data.pop(), opt.pop(), if_fraction)
                     if k == 'not solvable':
                         return 'not solvable'
                     data.append(k)
                 opt.append(line[i])
             i += 1
         while opt:
-            k = self.solve(data.pop(), data.pop(), opt.pop())
+            k = self.solve(data.pop(), data.pop(), opt.pop(), if_fraction)
             if k == 'not solvable':
                 return 'not solvable'
             data.append(k)
