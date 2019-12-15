@@ -2,14 +2,17 @@ import random
 from copy import deepcopy
 from solve import solvable
 
+
 class BiTree:
     operators = ['+', '-', '*', '/']
 
     def getOperOrder(self, ch):
         if ch in ['+', '-']:
             return 0
-        elif ch in ['*', '/']:
+        elif ch in ['*']:
             return 2
+        elif ch in ['/']:
+            return 3
         elif ch == '^':
             return 4
 
@@ -29,12 +32,12 @@ class BiTree:
         self.rchild=rchild
 
     def to_string(self,upper_level=0):
-        if self.node_type==1:
-            if upper_level>self.this_level:
+        if self.node_type == 1:
+            if upper_level > self.this_level or upper_level == self.this_level == 3:
                 return '(' + self.lchild.to_string(self.this_level) + self.val + self.rchild.to_string(self.this_level + 1) + ')'
             else:
                 return self.lchild.to_string(self.this_level) + self.val + self.rchild.to_string(self.this_level + 1)
-        if self.val < 0:
+        if int(self.val) < 0:
             return '('+str(self.val)+')'
         return str(self.val)
 
@@ -110,11 +113,10 @@ class QuestGenerator:
                 print(string)
                 continue
             else:
-                k =round(k, 3)
-                print(string+'='+str(k))
+                k = self.round_up(round(k, 3))
             sum=sum+1
             self.output_list.append(string)
-            self.output_list.append(str(k))
+            self.output_list.append(str(k)[:-1])
 
     def deduplicate(self, root: BiTree):
         # 深拷贝 - 避免破坏原有的随机顺序
@@ -137,3 +139,5 @@ class QuestGenerator:
             node.lchild = node.rchild
             node.rchild = tmp
 
+    def round_up(self,value):
+        return round(value*100)/100
