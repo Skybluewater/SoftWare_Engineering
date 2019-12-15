@@ -4,8 +4,6 @@ from solve import solvable
 
 
 class BiTree:
-    operators = ['+', '-', '*', '/']
-
     def getOperOrder(self, ch):
         if ch in ['+', '-']:
             return 0
@@ -31,7 +29,7 @@ class BiTree:
     def set_rchild(self,rchild):
         self.rchild=rchild
 
-    def to_string(self,upper_level=0):
+    def to_string(self, upper_level=0):
         if self.node_type == 1:
             if upper_level > self.this_level or upper_level == self.this_level == 3:
                 return '(' + self.lchild.to_string(self.this_level) + self.val + self.rchild.to_string(self.this_level + 1) + ')'
@@ -47,31 +45,6 @@ class Op:
         self.index=x
         self.if_need_delete=if_need_delete
         self.priority=priority
-
-
-class Stack(object):
-    def __init__(self):
-        self.items = []
-
-    def is_empty(self):
-        """判断是否为空"""
-        return self.items == []
-
-    def push(self, item):
-        """加入元素"""
-        self.items.append(item)
-
-    def pop(self):
-        """弹出元素"""
-        return self.items.pop()
-
-    def peek(self):
-        """返回栈顶元素"""
-        return self.items[len(self.items) - 1]
-
-    def size(self):
-        """返回栈的大小"""
-        return len(self.items)
 
 
 class QuestGenerator:
@@ -107,12 +80,12 @@ class QuestGenerator:
                 continue
             string = filled_ops[-1].to_string()
             solve = solvable()
-            k = solve.Calculator(string, if_fraction)
-            if k=='not solvable':
+            k = solve.Calculator(string)
+            if k == 'not solvable':
                 print(string)
                 continue
-            elif not if_fraction:
-                k = self.round_up(round(k, 3))
+            if not if_fraction:
+                k = float(k.numerator/k.denominator)
             sum = sum+1
             print(string, '=', str(k))
             self.output_list.append(string)
