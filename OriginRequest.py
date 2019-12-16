@@ -106,7 +106,6 @@ class QuestGenerator:
             solve = solvable()
             k = solve.Calculator(string)
             if k == 'not solvable':
-                print(string, '****** not solvable')
                 continue
             if not if_fraction:
                 k = self.round_up(round(float(k.numerator / k.denominator), 3))
