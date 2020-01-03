@@ -1,6 +1,7 @@
 import random
 from copy import deepcopy
 from solve import solvable
+from decimal import Decimal
 
 
 class BiTree:
@@ -137,7 +138,7 @@ class QuestGenerator:
             node.rchild = tmp
 
     def round_up(self, value):
-        return round(value * 100) / 100
+        return Decimal(value).quantize(Decimal('0.00'), rounding='ROUND_HALF_UP')
 
     def changePowOp(self, string: str, Pow_Operator):
         if Pow_Operator:
