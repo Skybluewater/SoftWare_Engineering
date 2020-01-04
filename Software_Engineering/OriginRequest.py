@@ -1,6 +1,6 @@
 import random
 from copy import deepcopy
-from solve import solvable
+from Software_Engineering.solve import solvable
 from decimal import Decimal
 
 
