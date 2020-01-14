@@ -1,4 +1,4 @@
-from Software_Engineering import OriginRequest as QR
+import OriginRequest as QR
 
 
 def answer(quantity: int, list: list, if_fraction=0):

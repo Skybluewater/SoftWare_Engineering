@@ -1,6 +1,6 @@
 import unittest
-from Software_Engineering.solve import solvable
-from Software_Engineering.OriginRequest import BiTree, QuestGenerator
+from solve import solvable
+from OriginRequest import BiTree, QuestGenerator
 from decimal import Decimal
 from fractions import Fraction
 

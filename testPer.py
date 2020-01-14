@@ -1,4 +1,4 @@
-from Software_Engineering import OriginRequest as QR
+import OriginRequest as QR
 
 if __name__ == '__main__':
     g = QR.QuestGenerator()
