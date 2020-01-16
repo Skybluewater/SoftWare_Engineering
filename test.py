@@ -1,5 +1,5 @@
 import unittest
-from solve import solvable
+from solve import Solvable
 from OriginRequest import BiTree, QuestGenerator
 from decimal import Decimal
 from fractions import Fraction
@@ -8,7 +8,7 @@ from fractions import Fraction
 class MyclassTest(unittest.TestCase):
     def setUp(self) -> None:
         self.question = QuestGenerator()
-        self.solution = solvable()
+        self.solution = Solvable()
         self.tree = BiTree()
 
     def tearDown(self) -> None:
@@ -44,9 +44,9 @@ class MyclassTest(unittest.TestCase):
         print("generate questions")
         print(ret)
 
-    def test_changePowOp(self):
-        k = self.question.changePowOp('(5+5)^2', True)
-        self.assertEqual(k, '(5+5)**2', '没有转换乘方符')
+    def test_changepowop(self):
+        k = self.question.changepowop('(5+5)^2', True)
+        self.assertEqual(k, '(5+5)**2', "didn't switch pow operator")
         print("The result of changing pow operator")
         print(k)
 
@@ -63,31 +63,31 @@ class MyclassTest(unittest.TestCase):
         print(k)
 
     def test_operadd(self):
-        k = self.tree.getOperOrder('+')
+        k = self.tree.getoperorder('+')
         self.assertEqual(k, 0)
         print("+ prior:")
         print(k)
 
     def test_opersub(self):
-        k = self.tree.getOperOrder('-')
+        k = self.tree.getoperorder('-')
         self.assertEqual(k, 0)
         print("- prior:")
         print(k)
 
     def test_opermul(self):
-        k = self.tree.getOperOrder('*')
+        k = self.tree.getoperorder('*')
         self.assertEqual(k, 2)
         print("* prior:")
         print(k)
 
     def test_operdiv(self):
-        k = self.tree.getOperOrder('/')
+        k = self.tree.getoperorder('/')
         self.assertEqual(k, 3)
         print("/ prior:")
         print(k)
 
     def test_operpow(self):
-        k = self.tree.getOperOrder('^')
+        k = self.tree.getoperorder('^')
         self.assertEqual(k, 4)
         print("^ prior:")
         print(k)
@@ -117,8 +117,8 @@ class MyclassTest(unittest.TestCase):
         print(k)
 
     def test_sub2(self):
-        k = self.solution.solve(15/7, 9/13, '-')
-        self.assertEqual(k, -132/91)
+        k = self.solution.solve(15 / 7, 9 / 13, '-')
+        self.assertEqual(k, -132 / 91)
         print("result of 9/13 - 15/7:")
         print(k)
 
@@ -135,8 +135,8 @@ class MyclassTest(unittest.TestCase):
         print(k)
 
     def test_mul3(self):
-        k = self.solution.solve(11/3, 21/10, '*')
-        self.assertEqual(k, 231/30)
+        k = self.solution.solve(11 / 3, 21 / 10, '*')
+        self.assertEqual(k, 231 / 30)
         print("result of 21/10 mul 11/3")
         print(k)
 
@@ -154,7 +154,7 @@ class MyclassTest(unittest.TestCase):
 
     def test_div2(self):
         k = self.solution.solve(6, 7, '/')
-        self.assertEqual(k, 7/6)
+        self.assertEqual(k, 7 / 6)
         print("result of 7 div 6:")
         print(k)
 
@@ -165,14 +165,14 @@ class MyclassTest(unittest.TestCase):
         print(k)
 
     def test_div4(self):
-        k = self.solution.solve(13/5, 7/9, '/')
-        self.assertEqual(k, 35/117)
+        k = self.solution.solve(13 / 5, 7 / 9, '/')
+        self.assertEqual(k, 35 / 117)
         print("result of 7/9 div 13/5:")
         print(k)
 
     def test_div5(self):
         k = self.solution.solve(3, -4, '/')
-        self.assertEqual(k, -4/3)
+        self.assertEqual(k, -4 / 3)
         print("result of -4 div 3:")
         print(k)
 
@@ -183,7 +183,6 @@ class MyclassTest(unittest.TestCase):
         print(k)
 
 
-
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(MyclassTest('test_ques1'))
@@ -192,7 +191,7 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_ques4'))
     suite.addTest(MyclassTest('test_ques5'))
     suite.addTest(MyclassTest('test_ques6'))
-    suite.addTest(MyclassTest('test_ChangePowOp'))
+    suite.addTest(MyclassTest('test_changepowop'))
     suite.addTest(MyclassTest('test_roundup1'))
     suite.addTest(MyclassTest('test_roundup2'))
     suite.addTest(MyclassTest('test_operadd'))
@@ -217,4 +216,3 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_pow'))
     runner = unittest.TextTestRunner()
     runner.run(suite)
-
