@@ -177,9 +177,15 @@ class MyclassTest(unittest.TestCase):
         print(k)
 
     def test_pow(self):
-        k = self.solution.solve(3, 2, '^')
-        self.assertEqual(k, 8)
-        print("result of 2 pow 3")
+        k = self.solution.solve(0.5, 4, '^')
+        self.assertEqual(k, 2)
+        print("result of 4^(1/2):")
+        print(k)
+
+    def test_pow2(self):
+        k = self.solution.solve(Fraction(1, 3), 4, '^')
+        self.assertEqual(k, 'not solvable')
+        print("result of 3^4:")
         print(k)
 
     def test_calculator1(self):
@@ -225,6 +231,7 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_div4'))
     suite.addTest(MyclassTest('test_div5'))
     suite.addTest(MyclassTest('test_pow'))
+    suite.addTest(MyclassTest('test_pow2'))
     suite.addTest(MyclassTest('test_calculator1'))
     suite.addTest(MyclassTest('test_calculator2'))
     suite.addTest(MyclassTest('test_calculator3'))

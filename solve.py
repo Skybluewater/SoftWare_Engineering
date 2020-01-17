@@ -22,10 +22,10 @@ class Solvable:
                 return Fraction(1, 1)
             elif num1 >= 5 or num1 <= 0.2 or num2 >= 100 or num2 <= 0.01:
                 return 'not solvable'
-            k2 = pow(int(k2), num1)
-            k1 = pow(int(k1), num1)
-            if type(k1) == int and type(k2) == int:
-                return Fraction(k2, k1)
+            k2 = pow(int(k2), float(num1))
+            k1 = pow(int(k1), float(num1))
+            if k2.is_integer() and k1.is_integer():
+                return Fraction(int(k2), int(k1))
             else:
                 return 'not solvable'
 
