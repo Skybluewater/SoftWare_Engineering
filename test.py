@@ -182,6 +182,17 @@ class MyclassTest(unittest.TestCase):
         print("result of 2 pow 3")
         print(k)
 
+    def test_calculator1(self):
+        k = self.solution.calculator("(6-3)/4")
+        self.assertEqual(k, 0.75)
+
+    def test_calculator2(self):
+        k = self.solution.calculator("7")
+        self.assertEqual(k, 7)
+
+    def test_calculator3(self):
+        k = self.solution.calculator("3-8")
+        self.assertEqual(k, -5)
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
@@ -214,5 +225,8 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_div4'))
     suite.addTest(MyclassTest('test_div5'))
     suite.addTest(MyclassTest('test_pow'))
+    suite.addTest(MyclassTest('test_calculator1'))
+    suite.addTest(MyclassTest('test_calculator2'))
+    suite.addTest(MyclassTest('test_calculator3'))
     runner = unittest.TextTestRunner()
     runner.run(suite)
