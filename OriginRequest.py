@@ -78,19 +78,9 @@ class QuestGenerator:
 
     def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, if_fraction=False, Pow_Operator=False,
                  Max=9):
-        operands = ['+', '-', '*', '/', '^']
         sum = 0
         while sum < quantity:
-            if if_false:
-                nums = [BiTree(0, random.randint(-Max, Max)) for _ in range(operators + 1)]
-            else:
-                nums = [BiTree(0, random.randint(0, Max)) for _ in range(operators + 1)]
-            if if_pow:
-                ops = [BiTree(1, ord(operands[random.randint(0, 4)])) for _ in range(operators)]
-            else:
-                ops = [BiTree(1, ord(operands[random.randint(0, 3)])) for _ in range(operators)]
-            unfilled_ops = ops
-            filled_ops = nums
+            filled_ops, unfilled_ops = self.randinit(operators=operators, if_false=if_false, if_pow=if_pow, Max=Max)
             while len(unfilled_ops):
                 i = random.randint(0, len(filled_ops) - 1)
                 unfilled_ops[0].set_lchild(filled_ops[i])
@@ -125,6 +115,18 @@ class QuestGenerator:
         else:
             self.deduplicate_set.add(inspect.to_string())
             return False
+
+    def randinit(self, operators, if_false, if_pow, Max):
+        operands = ['+', '-', '*', '/', '^']
+        if if_false:
+            nums = [BiTree(0, random.randint(-Max, Max)) for _ in range(operators + 1)]
+        else:
+            nums = [BiTree(0, random.randint(0, Max)) for _ in range(operators + 1)]
+        if if_pow:
+            ops = [BiTree(1, ord(operands[random.randint(0, 4)])) for _ in range(operators)]
+        else:
+            ops = [BiTree(1, ord(operands[random.randint(0, 3)])) for _ in range(operators)]
+        return nums, ops
 
     def format_expression(node: BiTree):
         if not node.lchild:
