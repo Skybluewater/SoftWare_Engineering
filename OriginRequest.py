@@ -55,7 +55,6 @@ class Stack(object):
         self.items = []
 
     def is_empty(self):
-        """判断是否为空"""
         return self.items == []
 
     def push(self, item):
@@ -76,7 +75,7 @@ class QuestGenerator:
         self.output_list = []
         self.deduplicate_set = set()
 
-    def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, if_fraction=False, Pow_Operator=False,
+    def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, if_fraction=False, pow_operator=False,
                  Max=9):
         sum = 0
         while sum < quantity:
@@ -107,7 +106,6 @@ class QuestGenerator:
             self.output_list.append(str(k))
 
     def deduplicate(self, root: BiTree):
-        # 深拷贝 - 避免破坏原有的随机顺序
         inspect = deepcopy(root)
         QuestGenerator.format_expression(inspect)
         if inspect.to_string() in self.deduplicate_set:
@@ -133,7 +131,6 @@ class QuestGenerator:
             return
         QuestGenerator.format_expression(node.lchild)
         QuestGenerator.format_expression(node.rchild)
-        # 仅有+×可交换
         if node.val in (0, 2) and node.lchild.to_string() > node.rchild.to_string():
             tmp = node.lchild
             node.lchild = node.rchild
