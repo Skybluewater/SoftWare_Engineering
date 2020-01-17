@@ -32,11 +32,11 @@ if __name__ == '__main__':
     if_false = input('negative operands:')
     if_pow = input('pow operators:')
     if_fraction = input('fraction present:')
-    Pow_Operand = input('Pow_Operator:')
-    Max = input('Max nums:')
+    Pow_Operand = input('pow_operator:')
+    max = input('max nums:')
     g = QR.QuestGenerator()
     g.generate(quantity=int(quantity), operators=int(operators), if_false=int(if_false), if_pow=int(if_pow),
-               if_fraction=int(if_fraction), Pow_Operator=int(Pow_Operand), Max=int(Max))
+               if_fraction=int(if_fraction), pow_operator=int(Pow_Operand), max=int(max))
     answer(int(quantity),g.output_list,int(if_fraction))
     with open('out.txt', 'w', encoding='utf-8') as f:
         for out in g.output_list:
