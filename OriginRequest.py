@@ -76,10 +76,10 @@ class QuestGenerator:
         self.deduplicate_set = set()
 
     def generate(self, quantity=1, operators=7, if_false=False, if_pow=False, if_fraction=False, pow_operator=False,
-                 Max=9):
+                 max=9):
         sum = 0
         while sum < quantity:
-            filled_ops, unfilled_ops = self.randinit(operators=operators, if_false=if_false, if_pow=if_pow, Max=Max)
+            filled_ops, unfilled_ops = self.randinit(operators=operators, if_false=if_false, if_pow=if_pow, max=max)
             while len(unfilled_ops):
                 i = random.randint(0, len(filled_ops) - 1)
                 unfilled_ops[0].set_lchild(filled_ops[i])
@@ -114,12 +114,12 @@ class QuestGenerator:
             self.deduplicate_set.add(inspect.to_string())
             return False
 
-    def randinit(self, operators, if_false, if_pow, Max):
+    def randinit(self, operators, if_false, if_pow, max):
         operands = ['+', '-', '*', '/', '^']
         if if_false:
-            nums = [BiTree(0, random.randint(-Max, Max)) for _ in range(operators + 1)]
+            nums = [BiTree(0, random.randint(-max, max)) for _ in range(operators + 1)]
         else:
-            nums = [BiTree(0, random.randint(0, Max)) for _ in range(operators + 1)]
+            nums = [BiTree(0, random.randint(0, max)) for _ in range(operators + 1)]
         if if_pow:
             ops = [BiTree(1, ord(operands[random.randint(0, 4)])) for _ in range(operators)]
         else:
