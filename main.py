@@ -38,6 +38,4 @@ if __name__ == '__main__':
     g.generate(quantity=int(quantity), operators=int(operators), if_false=int(if_false), if_pow=int(if_pow),
                if_fraction=int(if_fraction), pow_operator=int(Pow_Operand), max=int(max))
     answer(int(quantity),g.output_list,int(if_fraction))
-    with open('out.txt', 'w', encoding='utf-8') as f:
-        for out in g.output_list:
-            f.write(out + '\n')
+

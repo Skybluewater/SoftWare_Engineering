@@ -101,7 +101,6 @@ class QuestGenerator:
                 k = self.round_up(round(float(k.numerator / k.denominator), 3))
             sum = sum + 1
             string = self.changepowop(string, pow_operator)
-            print(string, '=', str(k))
             self.output_list.append(string)
             self.output_list.append(str(k))
 
