@@ -1,8 +1,7 @@
 import unittest
 from solve import Solvable
 from OriginRequest import BiTree, QuestGenerator
-from decimal import Decimal
-from fractions import Fraction
+
 
 class uniontest(unittest.TestCase):
     def setUp(self) -> None:
@@ -45,6 +44,7 @@ class uniontest(unittest.TestCase):
         k = self.solution.calculator("3-8")
         self.assertEqual(k, -5)
 
+
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(uniontest('test_ques1'))
@@ -55,6 +55,5 @@ if __name__ == '__main__':
     suite.addTest(uniontest('test_calculator1'))
     suite.addTest(uniontest('test_calculator2'))
     suite.addTest(uniontest('test_calculator3'))
-
     runner = unittest.TextTestRunner()
     runner.run(suite)

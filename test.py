@@ -4,6 +4,7 @@ from OriginRequest import BiTree, QuestGenerator
 from decimal import Decimal
 from fractions import Fraction
 
+
 class test(unittest.TestCase):
     def setUp(self) -> None:
         self.question = QuestGenerator()
@@ -80,8 +81,8 @@ class test(unittest.TestCase):
         print(k)
 
     def test_add2(self):
-        k = self.solution.solve(3/5, 11/7, '+')
-        self.assertEqual(k, 76/35)
+        k = self.solution.solve(3 / 5, 11 / 7, '+')
+        self.assertEqual(k, 76 / 35)
         print("result of 3/5 add 11/7:")
         print(k)
 
@@ -98,8 +99,8 @@ class test(unittest.TestCase):
         print(k)
 
     def test_sub2(self):
-        k = self.solution.solve(15/7, 9/13, '-')
-        self.assertEqual(k, -132/91)
+        k = self.solution.solve(15 / 7, 9 / 13, '-')
+        self.assertEqual(k, -132 / 91)
         print("result of 9/13 - 15/7:")
         print(k)
 
@@ -116,8 +117,8 @@ class test(unittest.TestCase):
         print(k)
 
     def test_mul3(self):
-        k = self.solution.solve(11/3, 21/10, '*')
-        self.assertEqual(k, 231/30)
+        k = self.solution.solve(11 / 3, 21 / 10, '*')
+        self.assertEqual(k, 231 / 30)
         print("result of 21/10 mul 11/3")
         print(k)
 
@@ -146,8 +147,8 @@ class test(unittest.TestCase):
         print(k)
 
     def test_div4(self):
-        k = self.solution.solve(13/5, 7/9, '/')
-        self.assertEqual(k, 35/117)
+        k = self.solution.solve(13 / 5, 7 / 9, '/')
+        self.assertEqual(k, 35 / 117)
         print("result of 7/9 div 13/5:")
         print(k)
 
@@ -168,6 +169,7 @@ class test(unittest.TestCase):
         self.assertEqual(k, 'not solvable')
         print("result of 3^4:")
         print(k)
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
