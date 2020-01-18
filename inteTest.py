@@ -44,7 +44,7 @@ class MyclassTest(unittest.TestCase):
         print(ret)
 
     def test_ques7(self):
-        ret = self.question.generate(100,1,0,0,15)
+        ret = self.question.generate(100, 1, 0, 0, 0, 15)
         print("generate questions")
         print(ret)
 
@@ -72,5 +72,6 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_calculator1'))
     suite.addTest(MyclassTest('test_calculator2'))
     suite.addTest(MyclassTest('test_calculator3'))
+
     runner = unittest.TextTestRunner()
     runner.run(suite)
