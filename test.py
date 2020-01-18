@@ -19,10 +19,6 @@ class MyclassTest(unittest.TestCase):
         print("generate questions")
         print(ret)
 
-    def test_ques7(self):
-        ret = self.question.generate(100, 1, 0, 0, 15)
-        print("generate questions")
-
     def test_ques2(self):
         ret = self.question.generate(10, 5, 1, 0, 0, 9)
         print("generate questions")
@@ -201,21 +197,8 @@ class MyclassTest(unittest.TestCase):
         self.assertEqual(k, 7)
 
     def test_calculator3(self):
-        k = self.solution.calculator("3-18")
-        self.assertEqual(k, -15)
-
-    def test_changepowop2(self):
-        k = self.question.changepowop('5^2', False)
-        self.assertEqual(k, '5^2')
-
-    def test_108_109(self):
-        node1 = BiTree(0, 1)
-        node2 = BiTree(0, 2)
-        node3 = BiTree(1, 45)
-        node3.set_rchild(node2)
-        node3.set_lchild(node1)
-        self.question.format_expression(node3)
-
+        k = self.solution.calculator("3-8")
+        self.assertEqual(k, -5)
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
@@ -225,9 +208,7 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_ques4'))
     suite.addTest(MyclassTest('test_ques5'))
     suite.addTest(MyclassTest('test_ques6'))
-    suite.addTest(MyclassTest('test_ques7'))
     suite.addTest(MyclassTest('test_changepowop'))
-    suite.addTest(MyclassTest('test_changepowop2'))
     suite.addTest(MyclassTest('test_roundup1'))
     suite.addTest(MyclassTest('test_roundup2'))
     suite.addTest(MyclassTest('test_operadd'))
@@ -254,6 +235,5 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_calculator1'))
     suite.addTest(MyclassTest('test_calculator2'))
     suite.addTest(MyclassTest('test_calculator3'))
-    suite.addTest(MyclassTest('test_108_109'))
     runner = unittest.TextTestRunner()
     runner.run(suite)

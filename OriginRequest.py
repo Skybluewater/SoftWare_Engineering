@@ -43,6 +43,33 @@ class BiTree:
         return str(self.val)
 
 
+class Op:
+    def __init__(self, x, if_need_delete=False, priority=0):
+        self.index = x
+        self.if_need_delete = if_need_delete
+        self.priority = priority
+
+
+class Stack(object):
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[len(self.items) - 1]
+
+    def size(self):
+        return len(self.items)
+
+
 class QuestGenerator:
     def __init__(self):
         self.output_list = []
@@ -79,7 +106,7 @@ class QuestGenerator:
 
     def deduplicate(self, root: BiTree):
         inspect = deepcopy(root)
-        self.format_expression(inspect)
+        QuestGenerator.format_expression(inspect)
         if inspect.to_string() in self.deduplicate_set:
             return True
         else:
@@ -98,12 +125,12 @@ class QuestGenerator:
             ops = [BiTree(1, ord(operands[random.randint(0, 3)])) for _ in range(operators)]
         return nums, ops
 
-    def format_expression(self, node: BiTree):
+    def format_expression(node: BiTree):
         if not node.lchild:
             return
-        self.format_expression(node.lchild)
-        self.format_expression(node.rchild)
-        if node.this_level in (0, 2) and node.lchild.to_string() > node.rchild.to_string():
+        QuestGenerator.format_expression(node.lchild)
+        QuestGenerator.format_expression(node.rchild)
+        if node.val in (0, 2) and node.lchild.to_string() > node.rchild.to_string():
             tmp = node.lchild
             node.lchild = node.rchild
             node.rchild = tmp
