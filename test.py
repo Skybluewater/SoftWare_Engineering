@@ -208,6 +208,14 @@ class MyclassTest(unittest.TestCase):
         k = self.question.changepowop('5^2', False)
         self.assertEqual(k, '5^2')
 
+    def test_108_109(self):
+        node1 = BiTree(0, 1)
+        node2 = BiTree(0, 2)
+        node3 = BiTree(1, 45)
+        node3.set_rchild(node2)
+        node3.set_lchild(node1)
+        self.question.format_expression(node3)
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
@@ -246,5 +254,6 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_calculator1'))
     suite.addTest(MyclassTest('test_calculator2'))
     suite.addTest(MyclassTest('test_calculator3'))
+    suite.addTest(MyclassTest('test_108_109'))
     runner = unittest.TextTestRunner()
     runner.run(suite)

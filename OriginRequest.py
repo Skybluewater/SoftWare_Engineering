@@ -79,7 +79,7 @@ class QuestGenerator:
 
     def deduplicate(self, root: BiTree):
         inspect = deepcopy(root)
-        QuestGenerator.format_expression(inspect)
+        self.format_expression(inspect)
         if inspect.to_string() in self.deduplicate_set:
             return True
         else:
@@ -98,12 +98,12 @@ class QuestGenerator:
             ops = [BiTree(1, ord(operands[random.randint(0, 3)])) for _ in range(operators)]
         return nums, ops
 
-    def format_expression(node: BiTree):
+    def format_expression(self, node: BiTree):
         if not node.lchild:
             return
-        QuestGenerator.format_expression(node.lchild)
-        QuestGenerator.format_expression(node.rchild)
-        if node.val in (0, 2) and node.lchild.to_string() > node.rchild.to_string():
+        self.format_expression(node.lchild)
+        self.format_expression(node.rchild)
+        if node.this_level in (0, 2) and node.lchild.to_string() > node.rchild.to_string():
             tmp = node.lchild
             node.lchild = node.rchild
             node.rchild = tmp
