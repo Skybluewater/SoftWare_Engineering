@@ -43,33 +43,6 @@ class BiTree:
         return str(self.val)
 
 
-class Op:
-    def __init__(self, x, if_need_delete=False, priority=0):
-        self.index = x
-        self.if_need_delete = if_need_delete
-        self.priority = priority
-
-
-class Stack(object):
-    def __init__(self):
-        self.items = []
-
-    def is_empty(self):
-        return self.items == []
-
-    def push(self, item):
-        self.items.append(item)
-
-    def pop(self):
-        return self.items.pop()
-
-    def peek(self):
-        return self.items[len(self.items) - 1]
-
-    def size(self):
-        return len(self.items)
-
-
 class QuestGenerator:
     def __init__(self):
         self.output_list = []

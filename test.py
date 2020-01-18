@@ -19,6 +19,10 @@ class MyclassTest(unittest.TestCase):
         print("generate questions")
         print(ret)
 
+    def test_ques7(self):
+        ret = self.question.generate(100, 1, 0, 0, 15)
+        print("generate questions")
+
     def test_ques2(self):
         ret = self.question.generate(10, 5, 1, 0, 0, 9)
         print("generate questions")
@@ -197,8 +201,13 @@ class MyclassTest(unittest.TestCase):
         self.assertEqual(k, 7)
 
     def test_calculator3(self):
-        k = self.solution.calculator("3-8")
-        self.assertEqual(k, -5)
+        k = self.solution.calculator("3-18")
+        self.assertEqual(k, -15)
+
+    def test_changepowop2(self):
+        k = self.question.changepowop('5^2', False)
+        self.assertEqual(k, '5^2')
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
@@ -208,7 +217,9 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_ques4'))
     suite.addTest(MyclassTest('test_ques5'))
     suite.addTest(MyclassTest('test_ques6'))
+    suite.addTest(MyclassTest('test_ques7'))
     suite.addTest(MyclassTest('test_changepowop'))
+    suite.addTest(MyclassTest('test_changepowop2'))
     suite.addTest(MyclassTest('test_roundup1'))
     suite.addTest(MyclassTest('test_roundup2'))
     suite.addTest(MyclassTest('test_operadd'))
