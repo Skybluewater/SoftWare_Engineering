@@ -1,6 +1,5 @@
 import OriginRequest as QR
 
-
 def answer(quantity: int, list: list, if_fraction=0):
     i = 0
     correct = 0
@@ -24,7 +23,6 @@ def answer(quantity: int, list: list, if_fraction=0):
         i = i + 1
     print('correct num', correct)
     print('wrong num', quantity - correct)
-
 
 if __name__ == '__main__':
     quantity = input('quantity:')
