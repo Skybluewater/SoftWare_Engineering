@@ -5,7 +5,7 @@ from decimal import Decimal
 from fractions import Fraction
 
 
-class test(unittest.TestCase):
+class MyclassTest(unittest.TestCase):
     def setUp(self) -> None:
         self.question = QuestGenerator()
         self.solution = Solvable()
@@ -13,6 +13,58 @@ class test(unittest.TestCase):
 
     def tearDown(self) -> None:
         pass
+
+    def test_ques1(self):
+        ret = self.question.generate(10, 5, 0, 0, 0, 9)
+        print("generate questions")
+        print(ret)
+
+    def test_ques7(self):
+        ret = self.question.generate(100, 1, 0, 0, 15)
+        print("generate questions")
+
+    def test_ques2(self):
+        ret = self.question.generate(10, 5, 1, 0, 0, 9)
+        print("generate questions")
+        print(ret)
+
+    def test_ques3(self):
+        ret = self.question.generate(10, 5, 0, 1, 0, 9)
+        print("generate questions")
+        print(ret)
+
+    def test_ques4(self):
+        ret = self.question.generate(10, 5, 0, 0, 1, 9)
+        print("generate questions")
+        print(ret)
+
+    def test_ques5(self):
+        ret = self.question.generate(5, 8, 0, 0, 0, 15)
+        print("generate questions")
+        print(ret)
+
+    def test_ques6(self):
+        ret = self.question.generate(1000, 5, 1, 1, 1, 9)
+        print("generate questions")
+        print(ret)
+
+    def test_changepowop(self):
+        k = self.question.changepowop('(5+5)^2', True)
+        self.assertEqual(k, '(5+5)**2', "didn't switch pow operator")
+        print("The result of changing pow operator")
+        print(k)
+
+    def test_roundup1(self):
+        k = self.question.round_up(10.822)
+        self.assertEqual(k, Decimal('10.820'))
+        print("result of rounding up 10.822")
+        print(k)
+
+    def test_roundup2(self):
+        k = self.question.round_up(7.565)
+        self.assertEqual(k, Decimal('7.57'))
+        print("result of rounding up 7.565")
+        print(k)
 
     def test_operadd(self):
         k = self.tree.getoperorder('+')
@@ -42,36 +94,6 @@ class test(unittest.TestCase):
         k = self.tree.getoperorder('^')
         self.assertEqual(k, 4)
         print("^ prior:")
-        print(k)
-
-    def test_formatExpression(self):
-        node1 = BiTree(0, 1)
-        node2 = BiTree(0, 2)
-        node3 = BiTree(1, 45)
-        node3.set_rchild(node2)
-        node3.set_lchild(node1)
-        self.question.format_expression(node3)
-
-    def test_changepowop1(self):
-        k = self.question.changepowop('(5+5)^2', True)
-        self.assertEqual(k, '(5+5)**2', "didn't switch pow operator")
-        print("The result of changing pow operator")
-        print(k)
-
-    def test_changepowop2(self):
-        k = self.question.changepowop('5^2', False)
-        self.assertEqual(k, '5^2')
-
-    def test_roundup1(self):
-        k = self.question.round_up(10.822)
-        self.assertEqual(k, Decimal('10.820'))
-        print("result of rounding up 10.822")
-        print(k)
-
-    def test_roundup2(self):
-        k = self.question.round_up(7.565)
-        self.assertEqual(k, Decimal('7.57'))
-        print("result of rounding up 7.565")
         print(k)
 
     def test_add1(self):
@@ -158,7 +180,7 @@ class test(unittest.TestCase):
         print("result of -4 div 3:")
         print(k)
 
-    def test_pow1(self):
+    def test_pow(self):
         k = self.solution.solve(0.5, 4, '^')
         self.assertEqual(k, 2)
         print("result of 4^(1/2):")
@@ -170,35 +192,68 @@ class test(unittest.TestCase):
         print("result of 3^4:")
         print(k)
 
+    def test_calculator1(self):
+        k = self.solution.calculator("(6-3)/4")
+        self.assertEqual(k, 0.75)
+
+    def test_calculator2(self):
+        k = self.solution.calculator("7")
+        self.assertEqual(k, 7)
+
+    def test_calculator3(self):
+        k = self.solution.calculator("3-18")
+        self.assertEqual(k, -15)
+
+    def test_changepowop2(self):
+        k = self.question.changepowop('5^2', False)
+        self.assertEqual(k, '5^2')
+
+    def test_108_109(self):
+        node1 = BiTree(0, 1)
+        node2 = BiTree(0, 2)
+        node3 = BiTree(1, 45)
+        node3.set_rchild(node2)
+        node3.set_lchild(node1)
+        self.question.format_expression(node3)
+
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    suite.addTest(test('test_operadd'))
-    suite.addTest(test('test_opersub'))
-    suite.addTest(test('test_opermul'))
-    suite.addTest(test('test_operdiv'))
-    suite.addTest(test('test_operpow'))
-    suite.addTest(test('test_formatExpression'))
-    suite.addTest(test('test_changepowop1'))
-    suite.addTest(test('test_changepowop2'))
-    suite.addTest(test('test_roundup1'))
-    suite.addTest(test('test_roundup2'))
-    suite.addTest(test('test_add1'))
-    suite.addTest(test('test_add2'))
-    suite.addTest(test('test_add3'))
-    suite.addTest(test('test_sub1'))
-    suite.addTest(test('test_sub2'))
-    suite.addTest(test('test_mul1'))
-    suite.addTest(test('test_mul2'))
-    suite.addTest(test('test_mul3'))
-    suite.addTest(test('test_mul4'))
-    suite.addTest(test('test_div1'))
-    suite.addTest(test('test_div2'))
-    suite.addTest(test('test_div3'))
-    suite.addTest(test('test_div4'))
-    suite.addTest(test('test_div5'))
-    suite.addTest(test('test_pow1'))
-    suite.addTest(test('test_pow2'))
-
+    suite.addTest(MyclassTest('test_ques1'))
+    suite.addTest(MyclassTest('test_ques2'))
+    suite.addTest(MyclassTest('test_ques3'))
+    suite.addTest(MyclassTest('test_ques4'))
+    suite.addTest(MyclassTest('test_ques5'))
+    suite.addTest(MyclassTest('test_ques6'))
+    suite.addTest(MyclassTest('test_ques7'))
+    suite.addTest(MyclassTest('test_changepowop'))
+    suite.addTest(MyclassTest('test_changepowop2'))
+    suite.addTest(MyclassTest('test_roundup1'))
+    suite.addTest(MyclassTest('test_roundup2'))
+    suite.addTest(MyclassTest('test_operadd'))
+    suite.addTest(MyclassTest('test_opersub'))
+    suite.addTest(MyclassTest('test_opermul'))
+    suite.addTest(MyclassTest('test_operdiv'))
+    suite.addTest(MyclassTest('test_operpow'))
+    suite.addTest(MyclassTest('test_add1'))
+    suite.addTest(MyclassTest('test_add2'))
+    suite.addTest(MyclassTest('test_add3'))
+    suite.addTest(MyclassTest('test_sub1'))
+    suite.addTest(MyclassTest('test_sub2'))
+    suite.addTest(MyclassTest('test_mul1'))
+    suite.addTest(MyclassTest('test_mul2'))
+    suite.addTest(MyclassTest('test_mul3'))
+    suite.addTest(MyclassTest('test_mul4'))
+    suite.addTest(MyclassTest('test_div1'))
+    suite.addTest(MyclassTest('test_div2'))
+    suite.addTest(MyclassTest('test_div3'))
+    suite.addTest(MyclassTest('test_div4'))
+    suite.addTest(MyclassTest('test_div5'))
+    suite.addTest(MyclassTest('test_pow'))
+    suite.addTest(MyclassTest('test_pow2'))
+    suite.addTest(MyclassTest('test_calculator1'))
+    suite.addTest(MyclassTest('test_calculator2'))
+    suite.addTest(MyclassTest('test_calculator3'))
+    suite.addTest(MyclassTest('test_108_109'))
     runner = unittest.TextTestRunner()
     runner.run(suite)
