@@ -14,39 +14,24 @@ class MyclassTest(unittest.TestCase):
         pass
 
     def test_ques1(self):
-        ret = self.question.generate(10, 5, 0, 0, 0, 9)
+        ret = self.question.generate(1, 7, 0, 0, 0, 0, 9)
         print("generate questions")
-        print(ret)
 
     def test_ques2(self):
-        ret = self.question.generate(10, 5, 1, 0, 0, 9)
+        ret = self.question.generate(2, 7, 1, 1, 1, 1, 9)
         print("generate questions")
-        print(ret)
 
     def test_ques3(self):
-        ret = self.question.generate(10, 5, 0, 1, 0, 9)
+        ret = self.question.generate(999, 7, 0, 0, 0, 0, 9)
         print("generate questions")
-        print(ret)
 
     def test_ques4(self):
-        ret = self.question.generate(10, 5, 0, 0, 1, 9)
+        ret = self.question.generate(1000, 7, 0, 0, 0, 0, 9)
         print("generate questions")
-        print(ret)
 
     def test_ques5(self):
-        ret = self.question.generate(5, 8, 0, 0, 0, 15)
+        ret = self.question.generate(1001, 7, 1, 1, 1, 1, 9)
         print("generate questions")
-        print(ret)
-
-    def test_ques6(self):
-        ret = self.question.generate(1000, 5, 1, 1, 1, 9)
-        print("generate questions")
-        print(ret)
-
-    def test_ques7(self):
-        ret = self.question.generate(100, 1, 0, 0, 0, 15)
-        print("generate questions")
-        print(ret)
 
     def test_calculator1(self):
         k = self.solution.calculator("(6-3)/4")
@@ -67,8 +52,6 @@ if __name__ == '__main__':
     suite.addTest(MyclassTest('test_ques3'))
     suite.addTest(MyclassTest('test_ques4'))
     suite.addTest(MyclassTest('test_ques5'))
-    suite.addTest(MyclassTest('test_ques6'))
-    suite.addTest(MyclassTest('test_ques7'))
     suite.addTest(MyclassTest('test_calculator1'))
     suite.addTest(MyclassTest('test_calculator2'))
     suite.addTest(MyclassTest('test_calculator3'))
